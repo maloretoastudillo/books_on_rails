@@ -1,3 +1,5 @@
+<%= render '/shared/navbar' %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Books</h1>
@@ -23,7 +25,7 @@
         <td><%= book.editorial %></td>
         <td><%= book.course %></td>
         <td><%= book.category %></td>
-        <td> <img src=<%= book.image %> alt=""></td>
+        <td><%= book.image %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
