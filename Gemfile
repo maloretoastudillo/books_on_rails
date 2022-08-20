@@ -61,3 +61,5 @@ gem 'net-pop', require: false
 
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem "image_processing", "~> 1.12"
+
+gem "faker", "~> 2.22"
