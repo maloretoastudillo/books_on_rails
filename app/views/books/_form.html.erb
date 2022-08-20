@@ -11,7 +11,41 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+<form>
+  <div class="field form-group">
+    <%= form.label "Título" %>
+    <%= form.text_field :title, class:"form-control" %>
   </div>
+
+  <div class="field form-group">
+    <%= form.label "Autor" %>
+    <%= form.text_field :author, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label "Editorial" %>
+    <%= form.text_field :editorial, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Curso"%>
+    <%= form.select :course, @course%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Categoría" %>
+    <%= form.select  :category, @category%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Imagen referencial" %>
+    <%= form.file_field :image%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Guardar", class:"btn btn-dark text-white btn-block" %>
+  </div>
+
+</form>
+
 <% end %>
