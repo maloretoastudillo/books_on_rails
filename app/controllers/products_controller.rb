@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_condition, only: %i[ new create edit update]
+  before_action :set_status, only: %i[ new create edit update]
 
   # GET /products or /products.json
   def index
@@ -12,6 +14,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    @book = Book.find(params[:book_id])
     @product = Product.new
   end
 
@@ -21,11 +24,13 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
+    @book = Book.find(params[:book_id])
+    @product = Product.new(product_params.merge(user: current_user))
+    @product.book = @book
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
+        format.html { redirect_to book_path(@book), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -63,8 +68,17 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
 
+    def set_condition
+      @condition = Product.conditions.keys.map{|condition| [condition.humanize, condition] }
+    end
+
+    def set_status
+      @status = Product.statuses.keys.map{|status| [status.humanize, status] }
+    end
+
     # Only allow a list of trusted parameters through.
+
     def product_params
-      params.require(:product).permit(:editorial, :condition, :price, :status, :user_id, :book_id, images: [])
+      params.require(:product).permit(:editorial,  :price, :condition,:status, images: [])
     end
 end

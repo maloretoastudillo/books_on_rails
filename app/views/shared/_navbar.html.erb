@@ -13,16 +13,22 @@
             </form>
         </div>
         <div class="col col-3 text-white d-flex justify-content-end">
+            <h6 class='my-auto d-none d-lg-block'><%= current_user.first_name + " " + current_user.last_name if user_signed_in? %></h6>
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Usuario</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Registrarse</a>
-                    <a class="dropdown-item" href="#">Iniciar sesión</a>
-                    <a class="dropdown-item" href="#">Cerrar sesión</a>
-                    <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Publicar un libro</a>
+                    <% if user_signed_in? %>
+                        <h6 class='dropdown-item text-dark d-lg-none'><%= current_user.first_name + " " + current_user.last_name %></h6> 
+                        <h6 class='dropdown-item text-dark'><%= link_to 'Mis datos', edit_user_registration_path %></h6>
+                        <a class="dropdown-item" href="#">Mis publicaciones</a>
                         <a class="dropdown-item" href="#">Ver mensajes</a>
-                    </div>
+                        <div class="dropdown-divider"></div>
+                            <h6 class='dropdown-item text-dark'><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></h6>
+                       </div>
+                    <% else %>
+                        <h6 class='dropdown-item text-dark'><%= link_to 'Registrarse', new_user_registration_path %></h6>
+                        <h6 class='dropdown-item text-dark'><%= link_to 'Iniciar sesión', new_user_session_path %></h6>
+                    <% end %>
                 </div>
             </div>
         </div>

@@ -1,11 +1,13 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :set_course, only: %i[ new edit]
+  before_action :set_course, only: %i[ index new edit]
   before_action :set_category, only: %i[ new edit]
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @doms = Book.all.where(category: 0)
+    @texts = Book.all.where(category: 1)
+
   end
 
   # GET /books/1 or /books/1.json
