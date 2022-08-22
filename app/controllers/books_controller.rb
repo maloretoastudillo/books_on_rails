@@ -2,16 +2,18 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :set_course, only: %i[ index new edit]
   before_action :set_category, only: %i[ new edit]
+  before_action :set_products, only: %i[ show]
 
   # GET /books or /books.json
   def index
-    @doms = Book.all.where(category: 0)
-    @texts = Book.all.where(category: 1)
+    @doms = Book.with_attached_image.all.where(category: 0)
+    @texts = Book.with_attached_image.all.where(category: 1)
 
   end
 
   # GET /books/1 or /books/1.json
   def show
+
   end
 
   # GET /books/new
@@ -73,6 +75,10 @@ class BooksController < ApplicationController
 
     def set_category
       @category = Book.categories.keys.map {|category| [category, category] }
+    end
+
+    def set_products
+      @products = Product.where(book: @book)
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,4 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<h2><%= @book.title %></h3>
+<h4><%= @book.author %></h4>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <h3></h3>
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm text-center">
+            
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <%= image_tag product.images.first.variant(resize: '500 x 300').processed %>
+                        </div>
+                        <div class="carousel-item">
+                            <%= image_tag product.images.second.variant(resize: '500 x 300').processed %>
+                        </div>
+                        <div class="carousel-item">
+                            <%= image_tag product.images.third.variant(resize: '500 x 300').processed %>
+                        </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
+            </div>            
+            <div class="card-body">
+              <h5 class="card-text"><%= product.editorial %></h5>
+              <h5 class="card-text"><%= product.price %></h5>
+              <p class="card-text"><%= product.condition.humanize %></p>
+              <p class="card-text"><%= product.status.humanize %></p>
+              <%= link_to 'Contactar', book_path(product.book_id), class: 'btn btn-success text-white' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
