@@ -34,10 +34,10 @@
             </div>            
             <div class="card-body">
               <h5 class="card-text"><%= product.editorial %></h5>
-              <h5 class="card-text"><%= product.price %></h5>
+              <h5 class="card-text">$<%= product.price/1000 %>.<%= product.price%1000 == 0 ? "000" : product.price%1000 %></h5>
               <p class="card-text"><%= product.condition.humanize %></p>
               <p class="card-text"><%= product.status.humanize %></p>
-              <%= link_to 'Contactar', book_path(product.book_id), class: 'btn btn-success text-white' %>
+              <%= link_to 'Contactar', book_product_message_path(@book, product), class: 'btn btn-success text-white' %>
             </div>
           </div>
         </div>

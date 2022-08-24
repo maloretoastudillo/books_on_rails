@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :books do
-    resources :products
+    resources :products do
+      resources :messages, only: %i[ new create show]
+    end
   end
   
   devise_for :users

@@ -1,53 +1,6 @@
 require 'faker'
 
-Book.destroy_all
-
 editorials = [ 'Planeta', 'Catalonia', 'Barco de Vapor', 'Urano', 'Teraideas', 'Nabu Press', 'Palibrio', 'Debolsillo', 'Booket', 'Alfaguara', 'Susaeta', 'Anagrama', 'Tuskets', 'Salamandra', 'LUMEN', 'Anagrama', 'Sixbarral']
-
-images = ['https://via.placeholder.com/300/0000FF/FFFFFF?Text=Cover?Text=Cover',
-'https://via.placeholder.com/300/C82A54/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/EF280F/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/E36B2C/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/E36B2C/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/E7D40A/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/6DC36D/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/02AC66/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/23BAC4/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/109DFA/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/024A86/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/E69DFB/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/FF689D/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/BBA9BB/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/8C4966/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/222222/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/ff0000/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/00ff00/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/0000FF/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/3CB371/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/FFA500/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/6A5ACD/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/008000/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/OOA5E3/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/6C8864/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/00CDAC/FFFFFF?Text=Cover',
-'https://via.placeholder.com/300/FF6OA8/FFFFFF?Text=Cover'
-]
-
-for i in 0..11
-    10.times do
-        book = Book.create(
-            title: Faker::Book.title,
-            author: Faker::Book.author,
-            editorial: editorials.sample,
-            course: i,
-            category: 0
-        )
-        book.image.push(images.sample)
-        puts "se ha creado el libro #{book.title}, para el curso #{book.course}, en la categoría #{book.category}"
-    end
-    i = i + 1
-end
-
 texts = [
     {title: 'Lenguaje y Comunicación 1°básico - Proyecto Saber Hacer', editorial:'Santillana', course: 0 , category: 1},
     {title: 'Caligrafía 1°básico', editorial: 'Caligrafix', course: 0 , category: 1},
@@ -94,6 +47,24 @@ texts = [
     {title: 'Atlas Universal y de Chile regionalizado', editorial:'Zig-Zag', course: 11, category: 1}
 ]
 
+
+Book.destroy_all
+
+12.times do |i|
+    10.times do
+        book = Book.create(
+            title: Faker::Book.title,
+            author: Faker::Book.author,
+            editorial: editorials.sample,
+            course: i,
+            category: 0
+        )
+        book.image.attach(io: File.open("app/assets/images/book.jpg"), filename: "book.jpg")
+        puts "se ha creado el libro #{book.title}, para el curso #{book.course}, en la categoría #{book.category}"
+    end
+end
+
+
 texts.each do |text|
     book = Book.create(
         title: text[:title],
@@ -101,6 +72,7 @@ texts.each do |text|
         course: text[:course],
         category: text[:category]
     )
-    book.image.push(images.sample)
+    book.image.attach(io: File.open("app/assets/images/study_text.jpg"), filename: "study_text.jpg")
+
     puts "se ha creado el libro #{book.title}, para el curso #{book.course}, en la categoría #{book.category}"
 end

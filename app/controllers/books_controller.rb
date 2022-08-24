@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @doms = Book.with_attached_image.all.where(category: 0)
-    @texts = Book.with_attached_image.all.where(category: 1)
+    @texts = Book.with_attached_image.all.where(category:1 )
 
   end
 

@@ -3,6 +3,6 @@ class Product < ApplicationRecord
   belongs_to :book
   has_many_attached :images
 
-  enum condition: [ :malo, :bueno, :muy_bueno, :como_nuevo ]
+  enum condition: [ :aceptable, :bueno, :muy_bueno, :como_nuevo, :nuevo ]
   enum status: [ :disponible, :comprometido]
 end

@@ -6,18 +6,18 @@
   <div class="container">
     <h3>Lectura domiciliaria</h3>
     <div class="row">
-      <% @doms.each do |book| %>
-        <div class="col-md-4">
+
+          <% @doms.each do |book| %>
+        <div class="col-md-3">
           <div class="card mb-4 shadow-sm text-center">
-            <%#= image_tag book.image %>
+            <%= image_tag book.image.variant(resize: '150x200').processed %>
             <div class="card-body">
               <h5 class="card-text"><%= book.title%></h5>
               <h5 class="card-text"><%= book.author%></h5>
               <p class="card-text"><%= book.editorial%></p>
               <p class="card-text"><%= book.course%></p>
-              <%= link_to 'Ver', book_path(book), class: 'btn btn-warning' %>
-              <%= link_to 'Contactar', book_path(book), class: 'btn btn-success' %>
-              <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary' %>
+              <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block' %><br>
+              <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block' %>
             </div>
           </div>
         </div>
@@ -28,16 +28,16 @@
         <h3>Textos de Estudio</h3>
     <div class="row">
       <% @texts.each do |book| %>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card mb-4 shadow-sm text-center">
-            <%#= image_tag (book.image).to_s %>
+            <%= image_tag book.image.variant(resize: '150x200').processed %>
             <div class="card-body">
               <h5 class="card-text"><%= book.title%></h5>
               <h5 class="card-text"><%= book.author%></h5>
               <p class="card-text"><%= book.editorial%></p>
               <p class="card-text"><%= book.course%></p>
-              <%= link_to 'Buscar', book_path(book), class: 'btn btn-warning' %>
-              <%= link_to 'Contactar', book_path(book), class: 'btn btn-success' %>
+              <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block' %><br>
+              <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block' %>
             </div>
           </div>
         </div>
