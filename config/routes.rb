@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :books do
     resources :products, except: %i[ index] do
       resources :messages, only: %i[ new create show]

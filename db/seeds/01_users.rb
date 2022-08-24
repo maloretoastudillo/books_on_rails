@@ -1,4 +1,5 @@
 User.destroy_all
+AdminUser.destroy_all 
 
 users = [ 
     {email:'loreto@book.cl', first_name:'María Loreto', last_name:'Astudillo', password:'123456', admin: true},
@@ -16,8 +17,10 @@ users.each do |user|
         first_name: user[:first_name],
         last_name: user[:last_name],
         password: user[:password],
-        encrypted_password: user[:password],
+        password_confirmation: user[:password],
         admin: user[:admin]
     )
     puts "se ha creado el usuario #{u.first_name} #{u.last_name} con email #{u.email}"
 end
+
+AdminUser.create!(email: 'admin@book.com', password: '123456', password_confirmation: '123456')
