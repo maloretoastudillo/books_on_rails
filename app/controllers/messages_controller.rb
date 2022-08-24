@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :set_product, except: %i[ index ]
     
   def index
-    @my_messages = Message.all
+    @my_messages = Message.page(params[:page])
   end
 
     def show

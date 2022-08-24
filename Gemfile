@@ -65,3 +65,5 @@ gem "image_processing", "~> 1.12"
 gem "faker", "~> 2.22", group: :development
 
 gem "activeadmin", "~> 2.13"
+
+gem "kaminari", "~> 1.2"

@@ -297,6 +297,7 @@ DEPENDENCIES
   faker (~> 2.22)
   image_processing (~> 1.12)
   jbuilder (~> 2.7)
+  kaminari (~> 1.2)
   listen (~> 3.3)
   net-imap
   net-pop
