@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
+  before_action :set_book, only: %i[ index new create ]
   before_action :set_product, only: %i[ show edit update destroy ]
-  before_action :set_condition, only: %i[ new create edit update]
-  before_action :set_status, only: %i[ new create edit update]
+  before_action :set_condition, only: %i[ new create edit update ]
+  before_action :set_status, only: %i[ new create edit update ]
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @my_products = Product.all.where(user: current_user)
   end
 
   # GET /products/1 or /products/1.json
@@ -14,7 +15,6 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @book = Book.find(params[:book_id])
     @product = Product.new
   end
 
@@ -24,7 +24,6 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @book = Book.find(params[:book_id])
     @product = Product.new(product_params.merge(user: current_user))
     @product.book = @book
 
@@ -64,6 +63,10 @@ class ProductsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_book
+      @book = Book.find(params[:book_id])
+    end    
+    
     def set_product
       @product = Product.find(params[:id])
     end

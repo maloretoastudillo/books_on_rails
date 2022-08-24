@@ -5,4 +5,8 @@ class Product < ApplicationRecord
 
   enum condition: [ :aceptable, :bueno, :muy_bueno, :como_nuevo, :nuevo ]
   enum status: [ :disponible, :comprometido]
+
+  def mine
+    self.where(user_id: @current_user.id)
+  end
 end

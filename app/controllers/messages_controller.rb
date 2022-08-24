@@ -1,20 +1,16 @@
 class MessagesController < ApplicationController
   #before_action :set_book
-  before_action :set_product
+  before_action :set_product, except: %i[ index ]
     
-    def index
- #       @my_messages = Message.all.mine
-    end
+  def index
+    @my_messages = Message.all
+  end
 
     def show
 #        @conversation = @my_messages.conversation
         @conversation = Message.all
         @message = Message.new
     end
-
-    # def new
-    #     @message = Message.new
-    # end
 
     def create
         #@product = Product.find(params[:id])

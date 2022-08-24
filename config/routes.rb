@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resources :books do
-    resources :products do
+    resources :products, except: %i[ index] do
       resources :messages, only: %i[ new create show]
     end
   end
-  
+  get '/products/', to: 'products#index'
+  get '/messages/', to: 'messages#index'
+
   devise_for :users
 
   root 'homes#index'

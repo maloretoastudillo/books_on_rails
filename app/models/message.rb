@@ -18,7 +18,7 @@ class Message < ApplicationRecord
     sender_filtered = sender.uniq{|message| [message.book, message.recipient]}
     received_filtered = received.uniq{|message| [message.book, message.sender]}
 
-    mine = (sender_filtered + received_filtered)
+    sender_filtered + received_filtered
     
     #.uniq{|message| [message.book, message.sender, message.recipient]}
 

@@ -3,12 +3,13 @@
 
 <table class="table table-hover">
   <tbody>
-    <% @my_messages.each do |message| %>
+    <% @my_messages.mine.each do |message| %>
     <tr>
-      <th scope="row"><%= if message.sender = current_user ? message.recipient.full_name : message.sender.full_name %></th>
+      <td><%= if message.sender == @current_user ? message.recipient.first_name : message.sender.first_name %></td>
       <td>message.book</td>
       <td>message.created_at</td>
       <td>@mdo</td>
     </tr>
+    <% end %>
   </tbody>
 </table>
