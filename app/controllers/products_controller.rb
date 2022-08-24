@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_book, only: %i[ index new create ]
+  before_action :set_book, only: %i[ new create ]
   before_action :set_product, only: %i[ show edit update destroy ]
   before_action :set_condition, only: %i[ new create edit update ]
   before_action :set_status, only: %i[ new create edit update ]

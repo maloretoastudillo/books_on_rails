@@ -22,8 +22,12 @@
           </div>
         </div>
       <% end %>
+      <br>
+      <%= paginate @doms %>
     </div>
   </div>
+  <br>
+  <br>
   <div class="container">
         <h3>Textos de Estudio</h3>
     <div class="row">
@@ -42,8 +46,9 @@
           </div>
         </div>
       <% end %>
-    </div>
+      <br>
+      <%= paginate @texts%>
+      </div>
   </div>
 </div>
-
-<%= link_to 'Agregar Libro', new_book_path %>
+<br>

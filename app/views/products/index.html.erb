@@ -35,8 +35,8 @@
               <p class="card-text"><%= product.condition.humanize %></p>
               <p class="card-text"><%= product.status.humanize %></p>
               <%#= link_to 'Ver mensajes', book_product_message_path(product.book, product), class: 'btn btn-success text-white' %>
-              <%#= link_to 'Editar', edit_book_product_path(product.book), class: 'btn btn-primary btn-block' %>
-              <%#= link_to 'Eliminar', book_product_path(book), method: :delete, data: { confirm: '¿Estás seguro de querer eliminar este registro?' }, class: 'btn btn-danger btn-block' %>
+              <%= link_to 'Editar', edit_book_product_path(product.book.id, product), class: 'btn btn-primary btn-block' %>
+              <%= link_to 'Eliminar', book_product_path(product.book.id, product), method: :delete, data: { confirm: '¿Estás seguro de querer eliminar este registro?' }, class: 'btn btn-danger btn-block' %>
             </div>
           </div>
         </div>
