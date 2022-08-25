@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_book, only: %i[ new create ]
+  before_action :set_book, only: %i[ new edit update create ]
   before_action :set_product, only: %i[ show edit update destroy ]
   before_action :set_condition, only: %i[ new create edit update ]
   before_action :set_status, only: %i[ new create edit update ]
@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
+        format.html { redirect_to products_url, notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
