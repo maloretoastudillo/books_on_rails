@@ -3,7 +3,7 @@ class Message < ApplicationRecord
   belongs_to :sender, :class_name => 'User'
   belongs_to :recipient, :class_name => 'User'
 
-  paginates_per 50
+  paginates_per 20
 
   def name
     first = self.sender == @current_user ? self.recipient.first_name : self.sender.first_name
