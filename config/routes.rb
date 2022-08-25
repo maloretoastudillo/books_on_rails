@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   end
   get '/products/', to: 'products#index'
   get '/messages/', to: 'messages#index'
+  get '/dashboard/', to: 'homes#dashboard'
+
 
   devise_for :users
 
