@@ -1,14 +1,18 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :set_course, only: %i[ index new edit]
+  before_action :set_course, only: %i[ index show new edit]
   before_action :set_category, only: %i[ new edit]
   before_action :set_products, only: %i[ show]
 
   # GET /books or /books.json
   def index
-    @doms = Book.with_attached_image.where(category: 0).page(params[:page])
-    @texts = Book.with_attached_image.all.where(category:1 ).page(params[:page])
-
+    if (params[:curso])
+      @doms = Book.with_attached_image.from_course(params[:curso]).where(category: 0).page(params[:page])
+      @texts = Book.with_attached_image.from_course(params[:curso]).all.where(category:1 ).page(params[:page])
+    else
+      @doms = []
+      @texts = []
+    end
   end
 
   # GET /books/1 or /books/1.json

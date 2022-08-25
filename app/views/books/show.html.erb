@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @book.title %></h3>
-<h4><%= @book.author %></h4>
-
 <div class="album py-5 bg-light">
   <div class="container">
-    <h3></h3>
+    <div class= 'd-flex justify-content-end h5' >
+      <%= link_to "Volver a #{@book.course}", books_path(curso: @book.course ), class:'text-decoration-none'%>
+    </div>
+    <h2><%= @book.title %></h3>
+    <h4><%= @book.author %></h4>
     <div class="row">
       <% @products.each do |product| %>
         <div class="col-md-4">
@@ -13,15 +14,12 @@
             
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <%= image_tag product.images.first.variant(resize: '500 x 300').processed %>
-                        </div>
-                        <div class="carousel-item">
-                            <%= image_tag product.images.second.variant(resize: '500 x 300').processed %>
-                        </div>
-                        <div class="carousel-item">
-                            <%= image_tag product.images.third.variant(resize: '500 x 300').processed %>
-                        </div>
+                  <% product.images.each_with_index do |image, index| %>
+                    <% class_values = (index == 0) ? 'carousel-item active' : 'carousel-item' %>
+                    <div class='<%= class_values %>'>
+                      <%= image_tag image.variant(resize: '500 x 300').processed %>
+                    </div>
+                  <% end %>
                 </div>
                 <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -34,10 +32,10 @@
             </div>            
             <div class="card-body">
               <h5 class="card-text"><%= product.editorial %></h5>
-              <h5 class="card-text">$<%= product.price/1000 %>.<%= product.price%1000 == 0 ? "000" : product.price%1000 %></h5>
+              <h5 class="card-text">$<%= product.price.to_s.reverse.scan(/.{1,3}/).join('.').reverse %></h5>
               <p class="card-text"><%= product.condition.humanize %></p>
               <p class="card-text"><%= product.status.humanize %></p>
-              <%= link_to 'Contactar', book_product_message_path(@book, product), class: 'btn btn-success text-white' %>
+              <%= link_to 'Contactar', book_product_message_path(@book, product), class: 'btn btn-success text-white text-decoration-none' %>
             </div>
           </div>
         </div>

@@ -1,53 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%=@course[0][0]%></h1>
-
 <div class="album py-5 bg-light">
   <div class="container">
-    <h3>Lectura domiciliaria</h3>
+    <div class= 'd-flex justify-content-end h6'>
+      <%= link_to 'Volver a todos los cursos', root_path, class:'text-decoration-none' %>
+    </div>
+    <h1><%= @doms.last.course %></h1><br>
+    <h2>Lectura domiciliaria</h3>
     <div class="row">
-
-          <% @doms.each do |book| %>
+      <% @doms.each do |book| %>
         <div class="col-md-3">
           <div class="card mb-4 shadow-sm text-center">
-            <%= image_tag book.image.variant(resize: '150x200').processed %>
+            <%= image_tag book.image.variant(resize: '100x150').processed %>
             <div class="card-body">
               <h5 class="card-text"><%= book.title%></h5>
               <h5 class="card-text"><%= book.author%></h5>
               <p class="card-text"><%= book.editorial%></p>
-              <p class="card-text"><%= book.course%></p>
-              <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block' %><br>
-              <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block' %>
+              <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block text-decoration-none text-primary' %><br>
+              <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block text-decoration-none text-warning' %>
             </div>
           </div>
         </div>
       <% end %>
-      <br>
-      <%= paginate @doms %>
     </div>
   </div>
   <br>
   <br>
   <div class="container">
-        <h3>Textos de Estudio</h3>
+        <h2>Textos de Estudio</h3>
     <div class="row">
       <% @texts.each do |book| %>
         <div class="col-md-3">
           <div class="card mb-4 shadow-sm text-center">
-            <%= image_tag book.image.variant(resize: '150x200').processed %>
+            <%= image_tag book.image.variant(resize: '100x150').processed %>
             <div class="card-body">
               <h5 class="card-text"><%= book.title%></h5>
               <h5 class="card-text"><%= book.author%></h5>
               <p class="card-text"><%= book.editorial%></p>
-              <p class="card-text"><%= book.course%></p>
-              <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block' %><br>
-              <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block' %>
+              <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block text-decoration-none text-primary' %><br>
+              <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block text-decoration-none text-warning' %>
             </div>
           </div>
         </div>
       <% end %>
-      <br>
-      <%= paginate @texts%>
       </div>
   </div>
 </div>
