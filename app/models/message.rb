@@ -23,9 +23,9 @@ class Message < ApplicationRecord
     sender_id == user.id ? recipient_id : sender_id
   end
 
-  def name
-    first = self.sender == @current_user ? self.recipient.first_name : self.sender.first_name
-    last = self.sender == @current_user ? self.recipient.last_name : self.sender.last_name
+  def name(user)
+    first = self.sender == user ? self.recipient.first_name : self.sender.first_name
+    last = self.sender == user ? self.recipient.last_name : self.sender.last_name
 
     first + " " + last
 

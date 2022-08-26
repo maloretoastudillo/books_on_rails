@@ -1,15 +1,14 @@
-<%#= render 'form', message: @message %>
-
-
 <div class="album py-5 bg-light">
     <div class="container">
-        <% if @message.sender == current_user %>
-            <h2 class="font-weight-bold text-dark"><%= @message.recipient.fisrt_name %> <%= @message.recipient.last_name %> </h2>
-        <% else %>
-            <h2 class="font-weight-bold text-dark"><%= @message.sender.first_name %> <%= @message.sender.last_name %> </h2>
-        <% end %>
-        <h4 class="font-weight-bold text-dark"><%= @message.book.title %></h4>
-        <h3 class="font-weight-bold text-dark"><%= @message.book.author %></h3>
+        <div class = "col-8 text-right" >
+            <% if @message.sender == current_user %>
+                <h2 class="font-weight-bold text-dark"><%= @message.recipient.first_name %> <%= @message.recipient.last_name %> </h2>
+            <% else %>
+                <h2 class="font-weight-bold text-dark"><%= @message.sender.first_name %> <%= @message.sender.last_name %> </h2>
+            <% end %>
+            <h4 class="font-weight-bold text-dark"><%= @message.book.title %></h4>
+            <h3 class="font-weight-bold text-dark"><%= @message.book.author %></h3>                 
+        </div>
         <table class="table table-hover col-8">
             <tbody>
                 <% @messages.each do |message| %>

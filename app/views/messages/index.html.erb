@@ -1,14 +1,14 @@
-<h1>Casilla de mensajes</h1>
 
 <div class="album py-5 bg-light">
   <div class="container">
+    <h1>Casilla de mensajes</h1>
     <table class="table table-hover">
       <tbody>
         <% if @conversations.present? %>
           <% @conversations.each do |message| %>
           <% user_id = message.get_counterparty_id_of(current_user) %>
             <tr>
-              <td><%= link_to "#{message.name}", book_messages_path(user_id, message.book.id) %></td>
+              <td><%= link_to "#{message.name(current_user)}", book_messages_path(user_id, message.book.id) %></td>
               <td><%= message.book.title %></td>
               <td><%= message.created_at.strftime("%d/%m/%y, %H:%M") %></td>
             </tr>
@@ -19,4 +19,3 @@
     <br>
   </div>
 </div>
-<%#= paginate @messages %>

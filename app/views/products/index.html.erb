@@ -18,7 +18,6 @@
               <h6 class="card-text"><%= product.status.humanize %></h6>
             </div>
             <div>
-              <%= link_to 'Ver mensajes', root_path, class: 'text-decoration-none text-dark' %> | 
               <%= link_to 'Editar', edit_book_product_path(product.book, product), class: 'text-decoration-none text-dark' %> | 
               <%= link_to 'Eliminar', book_product_path(product.book.id, product), method: :delete, data: { confirm: '¿Estás seguro de querer eliminar este registro?' }, class: 'text-decoration-none text-dark' %>
             </div>

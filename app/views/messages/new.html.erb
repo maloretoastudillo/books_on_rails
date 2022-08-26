@@ -1,0 +1,6 @@
+<div class="container col-md-8">
+    <h2 class="font-weight-bold text-dark">Para: <%= @product.user.first_name %> <%= @product.user.last_name %></h2>
+    <h4 class="font-weight-bold text-dark">Asunto: <%= @book.title %></h4>
+
+    <%= render 'form', message: @message %>
+</div>

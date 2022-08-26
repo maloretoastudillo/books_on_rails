@@ -33,7 +33,7 @@
               <h5 class="card-text">$<%= product.price.to_s.reverse.scan(/.{1,3}/).join('.').reverse %></h5>
               <p class="card-text"><%= product.condition.humanize %></p>
               <p class="card-text"><%= product.status.humanize %></p>
-              <%= link_to 'Contactar', root_path, class: 'btn btn-success btn-block text-white text-decoration-none' %>
+              <%= link_to 'Contactar', new_book_product_message_path(product.book.id, product.id), class: 'btn btn-success btn-block text-white text-decoration-none' %>
             </div>
           </div>
         </div>

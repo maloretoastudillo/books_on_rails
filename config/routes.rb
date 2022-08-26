@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get '/message/:user_id/book/:book_id', to: 'messages#book_messages', as: 'book_messages'
 
+
   devise_for :users
 
   root 'homes#index'
