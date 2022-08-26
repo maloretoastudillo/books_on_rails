@@ -1,9 +1,27 @@
 class Message < ApplicationRecord
   belongs_to :book
-  belongs_to :sender, :class_name => 'User'
-  belongs_to :recipient, :class_name => 'User'
+  belongs_to :sender, class_name: 'User'
+  belongs_to :recipient, class_name: 'User'
 
   paginates_per 20
+
+  def self.conversations_of(user:)
+    messages = where(sender: user).or(where(recipient: user)).order(created_at: :desc)
+    
+    messages.each do |message|
+      if message.sender == user
+        message.code = (message.sender_id.to_s + message.recipient_id.to_s + message.book_id.to_s)
+      else
+        message.code = (message.recipient_id.to_s + message.sender_id.to_s + message.book_id.to_s)
+      end
+    end
+
+    messages.uniq { |message| message.code }
+  end
+
+  def get_counterparty_id_of(user)
+    sender_id == user.id ? recipient_id : sender_id
+  end
 
   def name
     first = self.sender == @current_user ? self.recipient.first_name : self.sender.first_name
@@ -13,26 +31,12 @@ class Message < ApplicationRecord
 
   end
 
-  def mine
-    sender = self.where(sender_id: @current_user.id).order(created_at: :desc)
-    received = self.where(recipient_id: @current_user.id).order(created_at: :desc)
-
-    sender_filtered = sender.uniq{|message| [message.book, message.recipient]}
-    received_filtered = received.uniq{|message| [message.book, message.sender]}
-
-    sender_filtered + received_filtered
-    
-    #.uniq{|message| [message.book, message.sender, message.recipient]}
-
-    #mine.order(created_at: :desc)
+  def self.mine(book:, user:, other_user:)
+    messages = where(sender: user, recipient: other_user, book: book).or(where(sender: other_user, recipient: user, book: book)).order(created_at: :desc)
   end
 
   def full_name
     self.first_name + " " + self.last_name
   end
 
-  def conversation
-    conversation = self.where(book: message.book, recipient_id: [message.recipient.id, current_user.id], sender_id: [message.recipient.id, current_user.id])
-    conversation.order(created_at: :desc)
-  end
 end

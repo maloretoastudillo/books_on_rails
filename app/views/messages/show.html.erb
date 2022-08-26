@@ -1,23 +1,4 @@
 <div class="container">
-<h2><%= @conversation.last.name %></h4>
-<h2><%#= @conversation.last.sender == current_user ? User.find(@conversation.last.recipient_id).first_name : User.find(@conversation.last.sender_id).first_name %></h2>  
-<h5><%= @conversation.last.book.title %></h4>
-<h6><%= @conversation.last.book.course %></h6><br>
-
-<%#= render 'form', message: @message %>
-
-<% @conversation.each do |message| %>
-    <% if message.sender == current_user %>
-        <div class="card mb-2 shadow-sm col-8 mr-auto text-left">
-            <p><%= message.content %></p>
-            <p class= 'text-right text-muted'><%= message.created_at.strftime("%d/%m/%y, %H:%M") %></p>
-        </div>
-    <% else %>
-        <div class="card mb-2 shadow-sm col-8 ml-auto text-left">
-            <%= message.content %>
-            <p class= 'text-right text-muted'><%= message.created_at.strftime("%d/%m/%y, %H:%M") %></p>
-        </div>
-    <% end %>
-<% end %>
+<%= @message %>
 </div>
     

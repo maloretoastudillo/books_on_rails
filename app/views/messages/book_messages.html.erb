@@ -1,0 +1,29 @@
+<%#= render 'form', message: @message %>
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <% if @message.sender == current_user %>
+            <h2 class="font-weight-bold text-dark"><%= @message.recipient.fisrt_name %> <%= @message.recipient.last_name %> </h2>
+        <% else %>
+            <h2 class="font-weight-bold text-dark"><%= @message.sender.first_name %> <%= @message.sender.last_name %> </h2>
+        <% end %>
+        <h4 class="font-weight-bold text-dark"><%= @message.book.title %></h4>
+        <h3 class="font-weight-bold text-dark"><%= @message.book.author %></h3>
+        <table class="table table-hover col-8">
+            <tbody>
+                <% @messages.each do |message| %>
+                    <% if message.sender == current_user %>
+                        <tr>
+                            <td><div class = "text-left"><p><%= message.content %></p><p class= 'text-muted font-weight-light'><%= message.created_at.strftime("%d/%m/%y, %H:%M")  %></p></div></td>
+                        </tr>
+                    <% else %>
+                        <tr>
+                            <td><div class = "text-right"><p><%= message.content %></p><p class= 'text-muted font-weight-light'><%= message.created_at.strftime("%d/%m/%y, %H:%M")  %></p></div></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
