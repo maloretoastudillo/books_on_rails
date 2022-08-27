@@ -2,8 +2,9 @@
 
 <div class="album py-5 bg-light">
   <div class="container">
-    <div class= 'd-flex justify-content-end h6'>
-      <%= link_to 'Volver a todos los cursos', root_path, class:'text-decoration-none' %>
+    <div class= 'text-right h6'>
+      <%= link_to 'Volver a todos los cursos', root_path, class:'text-decoration-none' %> <br>
+      <%= link_to 'Agregar libro', new_book_path, class:'text-decoration-none' if current_user.admin? %>
     </div>
     <h1><%= @doms.last.course %></h1><br>
     <h2>Lectura domiciliaria</h3>
@@ -18,6 +19,12 @@
               <p class="card-text"><%= book.editorial%></p>
               <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block text-decoration-none text-primary' %><br>
               <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block text-decoration-none text-warning' %>
+             </div>
+            <div>
+              <% if current_user.admin? %>
+                <%= link_to 'Editar', edit_book_path(book), class: 'text-decoration-none text-dark' %>  |
+                <%= link_to 'Eliminar', book_path(book), method: :delete, data: { confirm: '¿Estás seguro de querer eliminar este registro?' }, class: 'text-decoration-none text-dark'  %>       
+              <% end %>                     
             </div>
           </div>
         </div>
@@ -40,10 +47,15 @@
               <%= link_to 'Ver publicaciones', book_path(book), class: 'btn btn-warning btn-block text-decoration-none text-primary' %><br>
               <%= link_to 'Publicar', new_book_product_path(book), class: 'btn btn-primary btn-block text-decoration-none text-warning' %>
             </div>
+            <div>
+              <% if current_user.admin? %>
+                <%= link_to 'Editar', edit_book_path(book), class: 'text-decoration-none text-dark' %>  |
+                <%= link_to 'Eliminar', book_path(book), method: :delete, data: { confirm: '¿Estás seguro de querer eliminar este registro?' }, class: 'text-decoration-none text-dark'  %>       
+              <% end %>                     
+            </div>
           </div>
         </div>
       <% end %>
       </div>
   </div>
 </div>
-<br>

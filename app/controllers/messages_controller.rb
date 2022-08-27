@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_book, only: %i[ new create ]
   before_action :set_product, except: %i[ index xat book_messages ]
+  before_action :authenticate_user!
     
   def index
     @conversations = Message.conversations_of user: current_user

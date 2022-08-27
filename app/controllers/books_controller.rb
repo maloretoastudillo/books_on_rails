@@ -3,6 +3,8 @@ class BooksController < ApplicationController
   before_action :set_course, only: %i[ index show new edit]
   before_action :set_category, only: %i[ new edit]
   before_action :set_products, only: %i[ show]
+  before_action :authenticate_user!, only: %i[ new create edit updated destroy]
+
 
   # GET /books or /books.json
   def index
@@ -22,7 +24,11 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
+    if current_user.admin?
+      @book = Book.new 
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /books/1/edit
