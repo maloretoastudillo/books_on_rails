@@ -10,4 +10,6 @@ if Rails.env.production?
         password_confirmation: "123456",
         admin: true
     )
+
+    puts "los usuarios han sido creados"
 end
