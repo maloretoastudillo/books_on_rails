@@ -2,7 +2,6 @@ class HomesController < ApplicationController
 
     def index
         if params[:text]
-
             redirect_to dashboard_path(text: params[:text])
         end
     end
@@ -14,5 +13,4 @@ class HomesController < ApplicationController
         @books = @titles + @authors + @editorials
         @results = Product.where(book: @books)
     end
-
 end

@@ -5,7 +5,6 @@ class MessagesController < ApplicationController
     
   def index
     @conversations = Message.conversations_of user: current_user
-    # @messages = Message.page(params[:page])
   end
 
   def new
@@ -44,5 +43,4 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:content)
   end
-
 end
